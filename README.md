@@ -41,7 +41,7 @@ between its output and the driving target image (the networks "see" only the for
 The masks inputs m(X) and m(Y) are detached from their computational graph and passed to the models s.t this extension does not affect the original method and its results.
 The networks BGBase and BGRefine are also trained independently from each other , and backpropagation occurs in each network separately.
 
-![Alt text](imgs/isolated.png?raw=true "pipeline")original image
+![Alt text](imgs/isolated.png?raw=true "pipeline")
 ![Alt text](imgs/original.png?raw=true "original")
 
 <h2> Inference </h2>
