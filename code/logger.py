@@ -36,14 +36,8 @@ class Logger:
         self.loss_list = []
         self.log_file.flush()
     
-    def visualize_rec(self, inp, out, bg = False):
-        if not bg:
-            image = self.visualizer.visualize(inp['driving'], inp['driving2'], inp['source'], inp['target'], out)
-        else:
-
-            image = self.visualizer.visualize_with_bg(inp['source'],inp['driving'],inp['target'],out['second_phase_prediction'], out['foreground_driving'],
-                                                      out['background_src'], out['bg_base'])
-
+    def visualize_rec(self, inp, out):
+        image = self.visualizer.visualize(inp['driving'], inp['driving2'], inp['source'], inp['target'], out)
         imageio.imsave(os.path.join(self.visualizations_dir, "%s-rec.png" % str(self.epoch).zfill(self.zfill_num)), image)
 
     def save_cpk(self, emergent=False):
@@ -101,7 +95,7 @@ class Logger:
                 self.save_cpk()
         self.log_scores(self.names)
         # try: #plaster for first epoch
-        self.visualize_rec(inp, out, bg = False)
+        self.visualize_rec(inp, out)
         # except:
         #     print("*Notice visualize_rec has thrown an exception on visualize_rec.*")
         #     self.visualize_rec(inp, out)
@@ -126,7 +120,7 @@ class Visualizer:
         return np.concatenate(out, axis=1)
 
 
-    def visualize_with_bg(self, source, driving, target, generated, foreground_drive , background_src,  generated_base):
+    def visualize_with_bg(self, source, driving, target, generated, third_image, generated_bg_base, generated_bg_hd):
         images = []
 
         source = source.numpy()
@@ -137,29 +131,26 @@ class Visualizer:
         driving = np.transpose(driving, [0, 2, 3, 1])
         images.append(driving)
 
-        target = target.numpy()
-        target = np.transpose(target, [0, 2, 3, 1])
-        images.append(target)
+        # target = target.numpy()
+        # target = np.transpose(target, [0, 2, 3, 1])
+        # images.append(target)
 
         generated = generated.data.cpu().numpy()
         generated = np.transpose(generated, [0, 2, 3, 1])
         images.append(generated)
 
-        foreground_drive = foreground_drive.cpu().numpy()
-        foreground_drive = np.transpose(foreground_drive, [0, 2, 3, 1])
-        images.append(foreground_drive)
+        third_image = third_image.data.cpu().numpy()
+        third_image = np.transpose(third_image, [0, 2, 3, 1])
+        images.append(third_image)
 
-        background_src = background_src.cpu().numpy()
-        background_src = np.transpose(background_src, [0, 2, 3, 1])
-        images.append(background_src)
+        generated_bg_base = generated_bg_base.cpu().numpy()
+        generated_bg_base = np.transpose(generated_bg_base, [0, 2, 3, 1])
+        images.append(generated_bg_base)
 
-        generated_base = generated_base.data.cpu().numpy()
-        generated_base = np.transpose(generated_base, [0, 2, 3, 1])
-        images.append(generated_base)
-
-        # generated_hd = generated_hd.data.cpu().numpy()
-        # generated_hd = np.transpose(generated_hd, [0, 2, 3, 1])
-        # images.append(generated_hd)
+    
+        generated_bg_hd = generated_bg_hd.data.cpu().numpy()
+        generated_bg_hd = np.transpose(generated_bg_hd, [0, 2, 3, 1])
+        images.append(generated_bg_hd)
 
         image = self.create_image_grid(*images)
         image = (255 * image).astype(np.uint8)

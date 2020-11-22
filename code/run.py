@@ -20,7 +20,6 @@ from reconstruction import reconstruction
 from animate import animate
 from bg_model import BgRefinementNetwork, BackgroundGenerator
 
-
 if __name__ == "__main__":
     if sys.version_info[0] < 3:
         raise Exception("You must use Python 3 or higher. Recommended version is Python 3.7")
@@ -29,6 +28,7 @@ if __name__ == "__main__":
     parser.add_argument("--config", default="config/vox-256.yaml", help="path to config")
     parser.add_argument("--mode", default="train", choices=["train", "reconstruction", "animate"])
     parser.add_argument("--checkpoint", default=None, help="path to checkpoint to restore")
+    parser.add_argument("--bg_not_from_dataset",  help='Train with or without backgrounds models',action='store_true')
     parser.add_argument("--without_bg",  help='Train with or without backgrounds models',action='store_true')
     parser.add_argument("--log_dir", default='log', help="path to log into")
 
@@ -89,4 +89,8 @@ if __name__ == "__main__":
     elif opt.mode == 'animate':
         multiprocessing.set_start_method('spawn', True)
         print("Animate...")
-        animate(config, generator, mask_generator, opt.checkpoint, log_dir, dataset)
+        animate(config, generator, mask_generator,bg_generator, bg_refiner, opt.checkpoint, log_dir, dataset, opt.bg_not_from_dataset)
+    # elif opt.mode == 'animate_w_bg':
+    #     multiprocessing.set_start_method('spawn', True)
+    #     print("Animate...")
+    #     animate_w_bg(config, generator, mask_generator, opt.checkpoint, log_dir, dataset, )
