@@ -1,7 +1,7 @@
 <h1> Image Animation (&BG SWAP) with Perturbed Masks </h1>
 
 
-This repo presents an extensions to the method in paper Image Animation with Perturbed Masks - Yoav Shalev, Lior Wolf.
+This repo presents an extension to the method in paper Image Animation with Perturbed Masks - Yoav Shalev, Lior Wolf.
 
 
 Paper - https://arxiv.org/pdf/2011.06922v2.pdf
