@@ -74,15 +74,15 @@ Case 2 : the third is not from the same type, in this case we cannot remove dire
 
 <h2> Results </h2>
 
-Notice the original method needs to be trained for 100 epochs thus there is a bottleneck in the overall performance but the background swap results for a third image from the same type are satisfying. The performance for image not from the same type is currently poor but can significantly improve training more epochs along with the mask generator m.
+Notice the original method needs to be trained for 100 epochs thus there is a bottleneck in the overall performance but the background swap results for a third image from the same type are satisfying. The performance for a third image not from the same type is currently not very good but can significantly improve as mask generator m improves if trained for more epochs.
 
 
 After 13 epochs - From left to right
  (Source image, Driving video, Original method output, Third (BG) image , BGBase output, BGRefiner final output )
 
 ![Alt Text](imgs/out1.gif)
-![Alt Text](imgs/out1.gif)
-![Alt Text](imgs/out1.gif)
+![Alt Text](imgs/out2.gif)
+![Alt Text](imgs/out3.gif)
 
 
 
