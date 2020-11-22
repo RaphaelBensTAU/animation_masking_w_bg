@@ -53,7 +53,6 @@ def animate(config, generator, mask_generator,bg_base, bg_refine, checkpoint, lo
     bg_base.eval()
     bg_refine.eval()
 
-    c = 0
 
     for it, x in tqdm(enumerate(dataloader)):
         with torch.no_grad():
@@ -74,8 +73,6 @@ def animate(config, generator, mask_generator,bg_base, bg_refine, checkpoint, lo
                 mask_third_upsampled = F.interpolate(masked_third, size=(256, 256), mode='bilinear')
 
             for frame_idx in range(driving_video.shape[2]):
-                print(c)
-                c += 1
                 driving_frame = driving_video[:, :, frame_idx]
                 driving_mask = mask_generator(driving_frame)
 
@@ -84,8 +81,8 @@ def animate(config, generator, mask_generator,bg_base, bg_refine, checkpoint, lo
                 downsampled_second_phase = F.interpolate(out['second_phase_prediction'], size=(64, 64), mode='bilinear')
 
                 if third_image_not_from_dataset:
-                    masked_third = out['fixed_mask_64']
-                    mask_third_upsampled = out['fixed_mask']
+                    masked_third = torch.zeros((1,1,64,64)).cuda()
+                    mask_third_upsampled = torch.zeros((1,1,256,256)).cuda()
 
                 foreground_src, background_src, binary_src_mask = segment_using_mask(masked_third, downsampled_third_img, 60)
                 foreground_driving, background_driving, binary_driving_mask = segment_using_mask(out['fixed_mask_64'], downsampled_second_phase, 60)

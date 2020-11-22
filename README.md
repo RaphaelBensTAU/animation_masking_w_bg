@@ -68,13 +68,13 @@ At inference time, I divided it to 2 cases -
 Case 1 : the third image (which we want its background) is from the same type, in this case we can use its mask obtained by the mask generator, in order to remove the current 
 foreground of this third frame from the output.
 
-Case 2 : the third is not from the same type, in this case we cannot remove directly its foreground, but we use the driving refined mask as its mask in our method.
+Case 2 : the third is not from the same type, in this case we cannot remove directly its foreground, instead of applying the mask generator m to this image, we associate it with a all-black binary mask (no foreground).
 
 ![Alt text](imgs/inference.png?raw=true "pipeline")
 
 <h2> Results </h2>
 
-Notice the original method needs to be trained for 100 epochs thus there is a bottleneck in the overall performance but the background swap results for a third image from the same type are satisfying. The performance for a third image not from the same type is currently not very good but can significantly improve as mask generator m improves if trained for more epochs.
+Notice the original method needs to be trained for 100 epochs thus there is a bottleneck in the overall performance but the background swap results are clearly satisfying.
 
 
 After 13 epochs - From left to right
