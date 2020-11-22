@@ -51,7 +51,7 @@ Notice the architecture of BGBase and BGRefine are identical to the architecture
 
 ![Alt text](imgs/isolated.png?raw=true "pipeline")
 ![Alt text](imgs/original.png?raw=true "original")
-![Alt text](img/epoch_11.png?raw=true "epoch 11")
+![Alt text](imgs/epoch_11.png?raw=true "epoch 11")
 
 <h2> Inference </h2>
 The inference
