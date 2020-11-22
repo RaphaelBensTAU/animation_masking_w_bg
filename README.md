@@ -78,6 +78,8 @@ Notice the original method needs to be trained for 100 epochs thus there is a bo
 
 
 After 13 epochs - From left to right
+
+
  (Source image, Driving video, Original method output, Third (BG) image , BGBase output, BGRefiner final output )
 
 ![Alt Text](imgs/out1.gif)
