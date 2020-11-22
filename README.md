@@ -2,9 +2,10 @@
 
 
 This repo presents an extensions to the method in paper Image Animation with Perturbed Masks - Yoav Shalev, Lior Wolf.
-Paper -
+Paper - https://arxiv.org/pdf/2011.06922v2.pdf
+Code - https://github.com/itsyoavshalev/Image-Animation-with-Perturbed-Masks
 
-The extended model receives an optional third image from the same type (but any identity) and the background of this third image is merged in the animated source image by the driving video.
+The extended model receives an optional independent third image and the background of this third image is merged in the animated source image by the driving video.
 
 
 <h2> Approach </h2>
@@ -50,9 +51,10 @@ Notice the architecture of BGBase and BGRefine are identical to the architecture
 
 ![Alt text](imgs/isolated.png?raw=true "pipeline")
 ![Alt text](imgs/original.png?raw=true "original")
+![Alt text](img/epoch_11.png?raw=true "epoch 11")
 
 <h2> Inference </h2>
-
+The inference
 ![Alt text](imgs/inference.png?raw=true "pipeline")
 
-
+<h2> Results </h2>
