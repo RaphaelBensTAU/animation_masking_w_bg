@@ -64,12 +64,6 @@ The networks was trained along with the original method. Both networks are deact
 
 <h2> Inference </h2>
 
-At inference time, I divided it to 2 cases - 
-Case 1 : the third image (which we want its background) is from the same type, in this case we can use its mask obtained by the mask generator, in order to remove the current 
-foreground of this third frame from the output.
-
-Case 2 : the third is not from the same type, in this case we cannot remove directly its foreground, instead of applying the mask generator m to this image, we associate it with a all-black binary mask (no foreground).
-
 ![Alt text](imgs/inference.png?raw=true "pipeline")
 
 <h2> Results </h2>
